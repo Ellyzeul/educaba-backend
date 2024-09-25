@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->char('cnpj', 14);
+            $table->string('name')->nullable();
+            $table->char('cnpj', 14)->nullable();
             $table->string('phone')->nullable();
             $table->string('contact_email')->nullable();
             $table->foreignIdFor(User::class)->constrained();
