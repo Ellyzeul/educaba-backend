@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Contracts\Provider;
-use Laravel\Socialite\Contracts\User as GoogleUser;
 use Laravel\Socialite\Facades\Socialite;
 use Throwable;
 
@@ -33,7 +32,7 @@ class GoogleAuthController extends Controller
             $user = User::where('email', $googleUser->getEmail())->first();
 
             if(!isset($user)) {
-                $user = $this->insertGoogleUser($googleUser);
+                return redirect('/login');
             }
 
             Auth::login($user);
@@ -53,18 +52,5 @@ class GoogleAuthController extends Controller
         }
         
         return $this->driver->user();
-    }
-
-    private function insertGoogleUser(GoogleUser $googleUser)
-    {
-        $user = new User([
-            'name' => $googleUser->getName(),
-            'email' => $googleUser->getEmail(),
-            'google_id' => $googleUser->getId(),
-        ]);
-
-        $user->save();
-
-        return $user;
     }
 }
