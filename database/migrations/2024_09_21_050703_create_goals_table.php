@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('goals', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->foreignIdFor(Program::class)->constrained();
             $table->timestamps();

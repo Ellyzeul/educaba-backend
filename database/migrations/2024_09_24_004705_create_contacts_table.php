@@ -13,11 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->enum('relationship', ['father', 'mother', 'relative', 'responsible', 'other']);
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone_primary')->nullable();
+            $table->string('phone_secondary')->nullable();
             $table->foreignIdFor(Patient::class)->constrained();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('programs', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->json('inputs');
             $table->foreignIdFor(Patient::class)->constrained();

@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->json('inputs');
             $table->foreignIdFor(Program::class)->constrained();
             $table->foreignIdFor(Goal::class)->constrained();
