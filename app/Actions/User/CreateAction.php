@@ -5,11 +5,13 @@ namespace App\Actions\User;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\Organization;
 use App\Models\User;
+use App\Repositories\OrganizationRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Response;
 
 class CreateAction
 {
+
   public function handle(CreateUserRequest $request)
   {
     $user = (new UserRepository())->create($request->validated());
@@ -27,13 +29,12 @@ class CreateAction
       $user->save();
     }
 
-    return $user;
+    return response($user, Response::HTTP_CREATED);
   }
 
   private function createEmptyOrganization(User $user)
   {
-    $organization = new Organization(['user_id' => $user->id]);
-    $organization->save();
+    $organization = (new OrganizationRepository)->create(['user_id' => $user->id]);
 
     return $organization;
   }

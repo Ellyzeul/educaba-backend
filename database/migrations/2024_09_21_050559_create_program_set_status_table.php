@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('program_set_status', function (Blueprint $table) {
+        Schema::create('program_set_statuses', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->foreignIdFor(Organization::class)->nullable();
+            $table->foreignIdFor(Organization::class)->nullable()->constrained();
             $table->timestamps();
         });
     }

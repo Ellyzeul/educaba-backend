@@ -16,7 +16,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->json('inputs');
-            $table->foreignIdFor(ProgramSetStatus::class);
+            $table->foreignIdFor(ProgramSetStatus::class)->constrained();
             $table->timestamps();
         });
     }

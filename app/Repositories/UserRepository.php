@@ -19,7 +19,7 @@ class UserRepository
     return Cache::remember(
       $this->key($organizationId),
       self::TTL,
-      fn() => User::where('organization_id', $organizationId)->all() ?? collect([])
+      fn() => User::where('organization_id', $organizationId)->get() ?? collect([])
     );
   }
 
@@ -30,6 +30,10 @@ class UserRepository
     }
     
     $user = new User($data);
+    if(isset($data['organization_id']) && (new OrganizationRepository())->find($data['organization_id']) !== null) {
+      $user->organization_id = $data['organization_id'];
+    }
+
     $user->save();
 
     $this->updateCache($user, $user->organization_id);
