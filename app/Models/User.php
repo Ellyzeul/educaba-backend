@@ -48,4 +48,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $appends = ['organization'];
+
+    public function getOrganizationAttribute()
+    {
+        return Organization::find($this->organization_id);
+    }
 }

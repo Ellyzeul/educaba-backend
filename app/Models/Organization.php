@@ -11,4 +11,6 @@ class Organization extends Model
     use HasFactory, HasUlids;
 
     public $timestamps = false;
+
+    protected $fillable = ['user_id'];
 }
