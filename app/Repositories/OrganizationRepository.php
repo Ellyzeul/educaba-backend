@@ -13,7 +13,7 @@ class OrganizationRepository
 
   public function list(): Collection
   {
-    return Cache::remember(self::KEY, self::TTL, fn() => Organization::get() ?? collect([]));
+    return Cache::remember(self::KEY, self::TTL, fn() => Organization::get());
   }
 
   public function find(mixed $value, string $field = 'id')
