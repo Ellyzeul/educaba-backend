@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use GuzzleHttp\Client;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Contracts\Provider;
@@ -32,7 +33,7 @@ class GoogleAuthController extends Controller
             $user = User::where('email', $googleUser->getEmail())->first();
 
             if(!isset($user)) {
-                return redirect('/login');
+                return response(['message' => 'User does not exist...'], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
 
             Auth::login($user);
@@ -41,7 +42,7 @@ class GoogleAuthController extends Controller
         } catch(Throwable $err) {
             Log::error("Error on Google authentication: " . $err->getMessage());
 
-            return response(['message' => 'Internal error...'], 500);
+            return response(['message' => 'Internal error...'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

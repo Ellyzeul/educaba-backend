@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Goal;
-use App\Models\ProgramSet;
-use App\Models\User;
+use App\Models\ProgramSetStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('program_sets', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->string('name');
             $table->json('inputs');
-            $table->foreignIdFor(ProgramSet::class)->constrained();
-            $table->foreignIdFor(Goal::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(ProgramSetStatus::class);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('application');
+        Schema::dropIfExists('program_sets');
     }
 };

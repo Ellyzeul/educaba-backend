@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
+            $table->char('cpf', 11)->nullable();
             $table->enum('relationship', ['father', 'mother', 'relative', 'responsible', 'other']);
             $table->string('email')->nullable();
             $table->string('phone_primary')->nullable();
