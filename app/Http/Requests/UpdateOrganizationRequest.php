@@ -25,10 +25,10 @@ class UpdateOrganizationRequest extends FormRequest
     {
         return [
             'id' => 'required|size:26',
-            'name' => 'max:255',
-            'cnpj' => 'size:14',
-            'phone' => 'max:30',
-            'contact_email' => 'max:255',
+            'name' => 'max:255|nullable',
+            'cnpj' => 'size:14|nullable',
+            'phone' => 'max:30|nullable',
+            'contact_email' => 'max:255|nullable',
         ];
     }
 }
