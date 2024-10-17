@@ -15,5 +15,10 @@ return [
         'duplicate' => 'Usuário já cadastrado...',
       ],
     ],
+    'organization' => [
+      'update' => [
+        'not_found' => "Organização não existe...",
+      ],
+    ],
   ],
 ];

@@ -37,6 +37,19 @@ class OrganizationRepository
     return $organization;
   }
 
+  public function update(array $data)
+  {
+    $organization = $this->find($data['id']);
+    if($organization === null) return false;
+
+    collect($data)->each(fn($value, $attr) => $organization->{$attr} = $value);
+    $organization->save();
+
+    $this->updateCache($organization);
+
+    return $organization;
+  }
+
   private function updateCache(Organization $organization, bool $delete = false)
   {
     $all = $this->list()->filter(fn(Organization $cached) => $cached->id !== $organization->id);

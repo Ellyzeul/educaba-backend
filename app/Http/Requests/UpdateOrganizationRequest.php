@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class CreateUserRequest extends FormRequest
+class UpdateOrganizationRequest extends FormRequest
 {
     use HasApiFailResponse;
 
@@ -14,10 +13,6 @@ class CreateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if($this->header('dev-key') !== env('APP_DEV_KEY') && $this->user() === null) {
-            return false;
-        }
-
         return true;
     }
 
@@ -29,10 +24,11 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'password' => ['required', Password::min(8)->letters()->numbers()->symbols()],
-            'organization_id' => 'size:26',
+            'id' => 'required|size:26',
+            'name' => 'max:255',
+            'cnpj' => 'size:14',
+            'phone' => 'max:30',
+            'contact_email' => 'max:255',
         ];
     }
 }
