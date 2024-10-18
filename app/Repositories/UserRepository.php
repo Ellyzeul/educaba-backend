@@ -23,6 +23,13 @@ class UserRepository
     );
   }
 
+  public function find(string $id, ?string $organizationId)
+  {
+    return $this->list($organizationId)
+      ->filter(fn(User $user) => $user->id ===$id)
+      ->first();
+  }
+
   public function create(array $data)
   {
     if(User::where('email', $data['email'])->exists()) {
@@ -37,6 +44,19 @@ class UserRepository
     $user->save();
 
     $this->updateCache($user, $user->organization_id);
+
+    return $user;
+  }
+
+  public function update(array $data, ?string $organizationId)
+  {
+    $user = $this->find($data['id'], $organizationId);
+    if($user === null) return false;
+
+    collect($data)->each(fn($value, $attr) => $user->{$attr} = $value);
+    $user->save();
+
+    $this->updateCache($user, $organizationId);
 
     return $user;
   }

@@ -14,6 +14,13 @@ return [
       'create' => [
         'duplicate' => 'User already registered...',
       ],
+      'update' => [
+        'not_found' => "User doesn't exists...",
+      ],
+      'change_password' => [
+        'ok' => 'Password successfully changed!',
+        'not_found' => "User doesn't exists...",
+      ],
     ],
     'organization' => [
       'update' => [

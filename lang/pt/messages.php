@@ -14,6 +14,13 @@ return [
       'create' => [
         'duplicate' => 'Usuário já cadastrado...',
       ],
+      'update' => [
+        'not_found' => "Usuário não existe...",
+      ],
+      'change_password' => [
+        'ok' => 'Senha alterada com sucesso!',
+        'not_found' => "Usuário não existe...",
+      ],
     ],
     'organization' => [
       'update' => [

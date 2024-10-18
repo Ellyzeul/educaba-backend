@@ -13,6 +13,8 @@ Route::post('/user', [UserController::class, 'create'])->middleware([AuthDevelop
 
 Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::get('/user', fn(Request $request) => $request->user());
+    Route::patch('/user', [UserController::class, 'update']);
+    Route::post('/user/change-password', [UserController::class, 'changePassword']);
 
     Route::patch('/organization', [OrganizationController::class, 'update']);
 });
