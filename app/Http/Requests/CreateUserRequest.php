@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\OrganizationId;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -32,7 +33,7 @@ class CreateUserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => ['required', Password::min(8)->letters()->numbers()->symbols()],
-            'organization_id' => 'size:26',
+            'organization_id' => [new OrganizationId],
         ];
     }
 }
