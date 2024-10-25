@@ -57,6 +57,14 @@ return [
             'throw' => false,
         ],
 
+        'profile_picture' => [
+            'driver' => 'local',
+            'root' => storage_path('app/profile_picture'),
+            'url' => env('APP_URL').'/profile-picture',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*
@@ -72,6 +80,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('profile-picture') => storage_path('app/profile_picture')
     ],
 
 ];

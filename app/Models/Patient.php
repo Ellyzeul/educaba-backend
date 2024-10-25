@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory, HasUlids;
+
+    protected $fillable = ['name', 'sex', 'birth_date', 'image', 'organization_id'];
 }

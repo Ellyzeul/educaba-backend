@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthDeveloper;
 use Illuminate\Http\Request;
@@ -17,6 +18,8 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::post('/user/change-password', [UserController::class, 'changePassword']);
 
     Route::patch('/organization', [OrganizationController::class, 'update']);
+
+    Route::post('/patient', [PatientController::class, 'create']);
 });
 
 Route::get('/fallback', fn() => response([
