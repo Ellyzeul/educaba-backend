@@ -20,8 +20,15 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::patch('/organization', [OrganizationController::class, 'update']);
 
     Route::post('/patient', [PatientController::class, 'create']);
+    Route::patch('/patient', [PatientController::class, 'update']);
 });
 
-Route::get('/fallback', fn() => response([
-    'message' => 'unauthenticated...',
-], Response::HTTP_UNAUTHORIZED))->name('login');
+$unauthenticatedCallback = function() {
+    return response(['message' => 'unauthenticated...'], Response::HTTP_UNAUTHORIZED);
+};
+
+Route::get('/fallback', $unauthenticatedCallback)->name('login');
+Route::post('/fallback', $unauthenticatedCallback);
+Route::put('/fallback', $unauthenticatedCallback);
+Route::patch('/fallback', $unauthenticatedCallback);
+Route::delete('/fallback', $unauthenticatedCallback);

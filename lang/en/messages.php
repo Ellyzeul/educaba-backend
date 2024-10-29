@@ -27,5 +27,10 @@ return [
         'not_found' => "Organization doesn't exists...",
       ],
     ],
+    'patient' => [
+      'update' => [
+        'not_found' => "Patient doesn't exists...",
+      ],
+    ],
   ],
 ];
