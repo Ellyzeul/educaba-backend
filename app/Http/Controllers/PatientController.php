@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Patient\CreateAction;
+use App\Actions\Patient\DeleteAction;
 use App\Actions\Patient\UpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePatientRequest;
+use App\Http\Requests\DeletePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 
 class PatientController extends Controller
@@ -18,5 +20,10 @@ class PatientController extends Controller
     public function update(UpdatePatientRequest $request)
     {
         return (new UpdateAction)->handle($request);
+    }
+
+    public function delete(DeletePatientRequest $request)
+    {
+        return (new DeleteAction)->handle($request);
     }
 }

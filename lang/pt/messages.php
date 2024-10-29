@@ -29,7 +29,11 @@ return [
     ],
     'patient' => [
       'update' => [
-        'not_found' => "Patient doesn't exists...",
+        'not_found' => "Paciente não existe...",
+      ],
+      'delete' => [
+        'ok' => 'Paciente excluído com sucesso!',
+        'not_found' => "Paciente não existe...",
       ],
     ],
   ],

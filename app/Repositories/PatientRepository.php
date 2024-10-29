@@ -46,6 +46,17 @@ class PatientRepository
     return $patient;
   }
 
+  public function delete(string $id)
+  {
+    $patient = $this->find($id);
+    if($patient === null) return false;
+
+    $patient->delete();
+    $this->updateCache($patient, true);
+
+    return true;
+  }
+
   private function updateCache(Patient $patient, bool $delete = false)
   {
     $all = $this->list()->filter(fn(Patient $cached) => $cached->id !== $patient->id);
