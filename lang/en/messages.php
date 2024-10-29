@@ -31,6 +31,10 @@ return [
       'update' => [
         'not_found' => "Patient doesn't exists...",
       ],
+      'delete' => [
+        'ok' => 'Patient successfully deleted!',
+        'not_found' => "Patient doesn't exists...",
+      ],
     ],
   ],
 ];
