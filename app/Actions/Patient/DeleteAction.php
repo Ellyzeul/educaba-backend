@@ -21,10 +21,11 @@ class DeleteAction
 
   public function handle(DeletePatientRequest $request)
   {
-    $patient = $this->respository->find($request->input('id'));
+    $organzationId = $request->user()->organization_id;
+    $patient = $this->respository->find($request->input('id'), $organzationId);
     $this->deleteCurrentImage($patient);
 
-    $success = (new PatientRepository)->delete($request->input('id'));
+    $success = (new PatientRepository)->delete($request->input('id'), $organzationId);
 
     return $success
       ? response(['message' => __('messages.action.patient.delete.ok')], Response::HTTP_OK)

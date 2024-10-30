@@ -21,6 +21,6 @@ class CreateAction
     $data = $request->validated();
     $data['image'] = $this->handleImage($data['image']);
 
-    return (new PatientRepository)->create($data);
+    return (new PatientRepository)->create($data, $request->user()->organization_id);
   }
 }

@@ -22,13 +22,14 @@ class UpdateAction
   public function handle(UpdatePatientRequest $request)
   {
     $data = $request->validated();
-    $patient = $this->repository->find($data['id']);
+    $organizationId = $request->user()->organization_id;
+    $patient = $this->repository->find($data['id'], $organizationId);
 
     if(isset($data['image'])) {
       $data['image'] = $this->handleImage($data['image'], $patient);
     }
 
-    $patient = $this->repository->update($data);
+    $patient = $this->repository->update($data, $organizationId);
 
     if(!$patient) {
       return response([

@@ -9,46 +9,45 @@ use Illuminate\Support\Facades\Cache;
 class PatientRepository
 {
   private const TTL = 86400;
-  private const KEY = 'patients';
 
-  public function list(): Collection
+  public function list(string $organizationId): Collection
   {
-    return Cache::remember(self::KEY, self::TTL, fn() => Patient::get());
+    return Cache::remember($this->key($organizationId), self::TTL, fn() => Patient::get());
   }
 
-  public function find(mixed $value, string $field = 'id')
+  public function find(mixed $value, string $organizationId, string $field = 'id')
   {
-    return $this->list()
+    return $this->list($organizationId)
       ->filter(fn(Patient $patient) => $patient->{$field} === $value)
       ->first();
   }
 
-  public function create(array $data)
+  public function create(array $data, string $organizationId)
   {
     $patient = new Patient($data);
     $patient->save();
 
-    $this->updateCache($patient);
+    $this->updateCache($patient, $organizationId);
 
     return $patient;
   }
 
-  public function update(array $data)
+  public function update(array $data, string $organizationId)
   {
-    $patient = $this->find($data['id']);
+    $patient = $this->find($data['id'], $organizationId);
     if($patient === null) return false;
 
     collect($data)->each(fn($value, $attr) => $patient->{$attr} = $value);
     $patient->save();
 
-    $this->updateCache($patient);
+    $this->updateCache($patient, $organizationId);
 
     return $patient;
   }
 
-  public function delete(string $id)
+  public function delete(string $id, string $organizationId)
   {
-    $patient = $this->find($id);
+    $patient = $this->find($id, $organizationId);
     if($patient === null) return false;
 
     $patient->delete();
@@ -57,10 +56,15 @@ class PatientRepository
     return true;
   }
 
-  private function updateCache(Patient $patient, bool $delete = false)
+  private function updateCache(Patient $patient, string $organizationId, bool $delete = false)
   {
-    $all = $this->list()->filter(fn(Patient $cached) => $cached->id !== $patient->id);
+    $all = $this->list($organizationId)->filter(fn(Patient $cached) => $cached->id !== $patient->id);
 
-    Cache::put(self::KEY, $delete ? $all : $all->push($patient));
+    Cache::put($this->key($organizationId), $delete ? $all : $all->push($patient));
+  }
+
+  private function key(string $organizationId)
+  {
+    return "patients-from-$organizationId";
   }
 }
