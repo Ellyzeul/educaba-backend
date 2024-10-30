@@ -15,7 +15,13 @@ class CreateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if($this->header('dev-key') !== env('APP_DEV_KEY') && $this->user() === null) {
+        $hasDevKey = $this->header('dev-key') === env('APP_DEV_KEY');
+
+        if(!$hasDevKey && $this->user() === null) {
+            return false;
+        }
+
+        if($this->input('role') === 'dev' && !$hasDevKey) {
             return false;
         }
 
@@ -34,6 +40,7 @@ class CreateUserRequest extends FormRequest
             'email' => 'required|max:255',
             'password' => ['required', Password::min(8)->letters()->numbers()->symbols()],
             'organization_id' => [new OrganizationId],
+            'role' => 'required|in:dev,admin,therapeut',
         ];
     }
 }

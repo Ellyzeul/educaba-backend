@@ -13,7 +13,8 @@ Route::post('/auth/token', [AuthController::class, 'auth']);
 Route::post('/user', [UserController::class, 'create'])->middleware([AuthDeveloper::class]);
 
 Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
-    Route::get('/user', fn(Request $request) => $request->user());
+    Route::get('/user', [UserController::class, 'read']);
+    Route::get('/user/me', fn(Request $request) => $request->user());
     Route::patch('/user', [UserController::class, 'update']);
     Route::post('/user/change-password', [UserController::class, 'changePassword']);
 
