@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ReadUserRequest extends FormRequest
 {
+    use HasApiFailResponse;
+
     /**
      * Determine if the user is authorized to make this request.
      */

@@ -14,7 +14,7 @@ class UpdateAction
 
     if(!$organization) {
       return response([
-        'message' => __('messages.action.organization.not_found'),
+        'message' => __('messages.action.organization.update.not_found'),
       ], Response::HTTP_BAD_REQUEST);
     }
 

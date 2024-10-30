@@ -6,8 +6,8 @@ use App\Actions\User\{ChangePasswordAction, CreateAction, ReadAction, UpdateActi
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeUserPasswordRequest;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\ReadUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
         return (new CreateAction)->handle($request);
     }
 
-    public function read(Request $request)
+    public function read(ReadUserRequest $request)
     {
         return (new ReadAction)->handle($request);
     }
