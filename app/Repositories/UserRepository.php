@@ -61,6 +61,20 @@ class UserRepository
     return $user;
   }
 
+  public function delete(string $id, ?string $organizationId, bool $onlyMemory = false)
+  {
+    $user = $this->find($id, $organizationId);
+    if($user === null) return false;
+
+    if(!$onlyMemory) {
+      $user->delete();
+    }
+  
+    $this->updateCache($user, $organizationId, delete: true);
+
+    return true;
+  }
+
   private function updateCache(User $user, ?string $organizationId, bool $delete = false)
   {
     if($this->key($organizationId) === null) return;

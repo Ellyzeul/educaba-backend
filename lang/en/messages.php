@@ -21,6 +21,10 @@ return [
         'ok' => 'Password successfully changed!',
         'not_found' => "User doesn't exists...",
       ],
+      'unlink_organization' => [
+        'ok' => 'User unlinked from organization successfully!',
+        'not_found' => "User doesn't exists on organization...",
+      ],
     ],
     'organization' => [
       'update' => [
