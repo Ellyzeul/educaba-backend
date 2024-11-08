@@ -26,7 +26,7 @@ class UserRepository
   public function find(string $id, ?string $organizationId)
   {
     return $this->list($organizationId)
-      ->filter(fn(User $user) => $user->id ===$id)
+      ->filter(fn(User $user) => $user->id === $id)
       ->first();
   }
 
@@ -73,6 +73,11 @@ class UserRepository
     $this->updateCache($user, $organizationId, delete: true);
 
     return true;
+  }
+
+  public function push(User $user, ?string $organizationId)
+  {
+    $this->updateCache($user, $organizationId);
   }
 
   private function updateCache(User $user, ?string $organizationId, bool $delete = false)

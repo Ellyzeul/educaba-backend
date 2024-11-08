@@ -25,6 +25,11 @@ return [
         'ok' => 'Senha alterada com sucesso!',
         'not_found' => "Usuário não existe...",
       ],
+      'link_organization' => [
+        'ok' => 'Usuário associado à organização com sucesso!',
+        'not_found' => 'Usuário não existe...',
+        'already_linked' => 'Usuário já está associado a uma organização...',
+      ],
       'unlink_organization' => [
         'ok' => 'Usuário desassociado da organização com sucesso!',
         'not_found' => 'Usuário não existe nesta organização...',

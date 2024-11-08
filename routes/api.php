@@ -18,6 +18,7 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::patch('/user', [UserController::class, 'update']);
     Route::delete('/user', [UserController::class, 'delete']);
     Route::post('/user/change-password', [UserController::class, 'changePassword']);
+    Route::post('/user/link-organization', [UserController::class, 'linkOrganization']);
     Route::post('/user/unlink-organization', [UserController::class, 'unlinkOrganization']);
 
     Route::patch('/organization', [OrganizationController::class, 'update']);
