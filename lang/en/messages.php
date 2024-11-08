@@ -17,6 +17,10 @@ return [
       'update' => [
         'not_found' => "User doesn't exists...",
       ],
+      'delete' => [
+        'ok' => 'User deleted successfully!',
+        'not_found' => "User doesn't exists...",
+      ],
       'change_password' => [
         'ok' => 'Password successfully changed!',
         'not_found' => "User doesn't exists...",

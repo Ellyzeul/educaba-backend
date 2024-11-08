@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\User\{ChangePasswordAction, CreateAction, ReadAction, UnlinkOrganizationAction, UpdateAction};
+use App\Actions\User\{ChangePasswordAction, CreateAction, DeleteAction, ReadAction, UnlinkOrganizationAction, UpdateAction};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeUserPasswordRequest;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\ReadUserRequest;
 use App\Http\Requests\UnlinkOrganizationUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -25,6 +26,11 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request)
     {
         return (new UpdateAction)->handle($request);
+    }
+
+    public function delete(DeleteUserRequest $request)
+    {
+        return (new DeleteAction)->handle($request);
     }
 
     public function changePassword(ChangeUserPasswordRequest $request)
