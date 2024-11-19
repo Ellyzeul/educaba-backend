@@ -16,6 +16,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->json('inputs');
+            $table->boolean('has_single_set')->default(false);
             $table->foreignIdFor(Patient::class)->constrained();
             $table->timestamps();
         });

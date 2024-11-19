@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthDeveloper;
 use Illuminate\Http\Request;
@@ -26,6 +27,8 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::post('/patient', [PatientController::class, 'create']);
     Route::patch('/patient', [PatientController::class, 'update']);
     Route::delete('/patient', [PatientController::class, 'delete']);
+
+    Route::post('/program', [ProgramController::class, 'create']);
 });
 
 $unauthenticatedCallback = function() {
