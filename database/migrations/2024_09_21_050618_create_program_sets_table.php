@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Patient;
+use App\Models\Program;
 use App\Models\ProgramSetStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('program_sets', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->json('inputs');
             $table->foreignIdFor(ProgramSetStatus::class)->constrained();
-            $table->foreignIdFor(Patient::class)->constrained();
+            $table->foreignIdFor(Program::class)->constrained();
             $table->timestamps();
         });
     }
