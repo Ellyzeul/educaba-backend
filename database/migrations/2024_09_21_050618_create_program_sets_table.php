@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Organization;
 use App\Models\Program;
 use App\Models\ProgramSetStatus;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignIdFor(ProgramSetStatus::class)->default(Str::repeat('0', 26))->constrained();
             $table->foreignIdFor(Program::class)->constrained();
+            $table->foreignIdFor(Organization::class)->constrained();
             $table->timestamps();
         });
     }

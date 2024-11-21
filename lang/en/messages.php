@@ -49,5 +49,10 @@ return [
         'not_found' => "Patient doesn't exists...",
       ],
     ],
+    'program' => [
+      'create' => [
+        'without_organization' => "Authenticated user doesn't belong to an organization...",
+      ],
+    ],
   ],
 ];

@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Goal extends Model
 {
     use HasFactory, HasUlids;
+
+    protected $fillable = ['name', 'program_set_id'];
 }

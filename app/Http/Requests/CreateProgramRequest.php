@@ -25,6 +25,7 @@ class CreateProgramRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'patient_id' => 'required|string|size:26',
             'inputs' => 'required|array',
             'inputs.*.name' => 'required|string|max:255',
             'inputs.*.type' => 'required|in:text,number',

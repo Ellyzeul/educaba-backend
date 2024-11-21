@@ -12,7 +12,11 @@ class PatientRepository
 
   public function list(string $organizationId): Collection
   {
-    return Cache::remember($this->key($organizationId), self::TTL, fn() => Patient::get());
+    return Cache::remember(
+      $this->key($organizationId),
+      self::TTL,
+      fn() => Patient::where('organization_id', $organizationId)->get()
+    );
   }
 
   public function find(mixed $value, string $organizationId, string $field = 'id')

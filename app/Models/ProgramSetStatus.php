@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProgramSetStatus extends Model
 {
     use HasFactory, HasUlids;
+
+    protected $fillable = ['name', 'organization_id'];
 }
