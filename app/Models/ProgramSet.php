@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 
 class ProgramSet extends Model
 {
@@ -18,7 +17,7 @@ class ProgramSet extends Model
 
     protected $appends = ['goals', 'status'];
 
-    protected $hidden = ['program_set_status_id'];
+    protected $hidden = ['program_set_status_id', 'organization_id', 'program_id', 'created_at', 'updated_at'];
 
     public function getGoalsAttribute()
     {

@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::patch('/patient', [PatientController::class, 'update']);
     Route::delete('/patient', [PatientController::class, 'delete']);
 
+    Route::get('/program', [ProgramController::class, 'read']);
     Route::post('/program', [ProgramController::class, 'create']);
 });
 

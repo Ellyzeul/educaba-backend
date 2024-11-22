@@ -13,9 +13,11 @@ class Program extends Model
 
     protected $fillable = ['name', 'inputs', 'has_single_set', 'patient_id'];
 
-    protected $casts = ['inputs' => 'array'];
+    protected $casts = ['inputs' => 'array', 'has_single_set' => 'boolean'];
 
     protected $appends = ['sets'];
+
+    protected $hidden = ['patient_id'];
 
     public function getSetsAttribute()
     {
