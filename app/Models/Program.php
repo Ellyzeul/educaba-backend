@@ -17,10 +17,8 @@ class Program extends Model
 
     protected $appends = ['sets'];
 
-    protected $hidden = ['patient_id'];
-
     public function getSetsAttribute()
     {
-        return (new ProgramSetRepository)->list($this->id);
+        return (new ProgramSetRepository)->list($this->id)->values();
     }
 }

@@ -55,7 +55,7 @@ class PatientRepository
     if($patient === null) return false;
 
     $patient->delete();
-    $this->updateCache($patient, true);
+    $this->updateCache($patient, $organizationId, delete: true);
 
     return true;
   }

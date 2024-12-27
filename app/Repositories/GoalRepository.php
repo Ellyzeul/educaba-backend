@@ -55,7 +55,7 @@ class GoalRepository
     if($goal === null) return false;
 
     $goal->delete();
-    $this->updateCache($goal, true);
+    $this->updateCache($goal, $programSetId, delete: true);
 
     return true;
   }

@@ -21,7 +21,7 @@ class ProgramSet extends Model
 
     public function getGoalsAttribute()
     {
-        return (new GoalRepository)->list($this->id);
+        return (new GoalRepository)->list($this->id)->values();
     }
 
     public function getStatusAttribute()

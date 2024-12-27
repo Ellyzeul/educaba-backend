@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
 
     Route::get('/program', [ProgramController::class, 'read']);
     Route::post('/program', [ProgramController::class, 'create']);
+    Route::put('/program', [ProgramController::class, 'update']);
 });
 
 $unauthenticatedCallback = function() {

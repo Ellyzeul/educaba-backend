@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\ProgramSetStatus;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class ProgramSetStatusRepository
 {
@@ -24,12 +23,6 @@ class ProgramSetStatusRepository
 
   public function find(mixed $value, string $organizationId, string $field = 'id')
   {
-    Log::debug($this->list($organizationId));
-    Log::debug($field);
-    Log::debug($value);
-    Log::debug($this->list($organizationId)
-    ->filter(fn(ProgramSetStatus $programSetStatus) => $programSetStatus->{$field} === $value)
-    ->first());
     return $this->list($organizationId)
       ->filter(fn(ProgramSetStatus $programSetStatus) => $programSetStatus->{$field} === $value)
       ->first();
@@ -64,7 +57,7 @@ class ProgramSetStatusRepository
     if($programSetStatus === null) return false;
 
     $programSetStatus->delete();
-    $this->updateCache($programSetStatus, true);
+    $this->updateCache($programSetStatus, $organizationId, delete: true);
 
     return true;
   }

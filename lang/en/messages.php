@@ -53,6 +53,9 @@ return [
       'create' => [
         'without_organization' => "Authenticated user doesn't belong to an organization...",
       ],
+      'update' => [
+        'without_organization' => "Authenticated user doesn't belong to an organization...",
+      ],
     ],
   ],
 ];

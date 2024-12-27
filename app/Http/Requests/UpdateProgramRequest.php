@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProgramRequest extends FormRequest
+class UpdateProgramRequest extends FormRequest
 {
     use HasApiFailResponse;
 
@@ -24,6 +24,7 @@ class CreateProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'required|string|size:26',
             'name' => 'required|string|max:255',
             'patient_id' => 'required|string|size:26',
             'inputs' => 'required|array',
@@ -31,8 +32,10 @@ class CreateProgramRequest extends FormRequest
             'inputs.*.type' => 'required|in:text,number',
             'has_single_set' => 'boolean',
             'sets' => 'required|array',
+            'sets.*.id' => 'string|size:26',
             'sets.*.name' => 'max:255',
             'sets.*.goals' => 'required|array',
+            'sets.*.goals.*.id' => 'string|max:26',
             'sets.*.goals.*.name' => 'required|string|max:255',
         ];
     }

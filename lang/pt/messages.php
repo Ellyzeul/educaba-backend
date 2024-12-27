@@ -53,6 +53,9 @@ return [
       'create' => [
         'without_organization' => 'Usuário autenticado não pertence a nenhuma organização...',
       ],
+      'update' => [
+        'without_organization' => 'Usuário autenticado não pertence a nenhuma organização...',
+      ],
     ],
   ],
 ];

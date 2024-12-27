@@ -55,7 +55,7 @@ class ProgramSetRepository
     if($programSet === null) return false;
 
     $programSet->delete();
-    $this->updateCache($programSet, true);
+    $this->updateCache($programSet, $programId, delete: true);
 
     return true;
   }

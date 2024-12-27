@@ -55,7 +55,7 @@ class ProgramRepository
     if($program === null) return false;
 
     $program->delete();
-    $this->updateCache($program, true);
+    $this->updateCache($program, $patientId, delete: true);
 
     return true;
   }
