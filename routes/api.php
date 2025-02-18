@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
@@ -31,6 +32,8 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::get('/program', [ProgramController::class, 'read']);
     Route::post('/program', [ProgramController::class, 'create']);
     Route::put('/program', [ProgramController::class, 'update']);
+
+    Route::post('/application', [ApplicationController::class, 'create']);
 });
 
 $unauthenticatedCallback = function() {

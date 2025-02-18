@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePatientRequest extends FormRequest
+class CreateApplicationRequest extends FormRequest
 {
     use HasApiFailResponse;
 
@@ -14,7 +13,7 @@ class UpdatePatientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return in_array($this->user()->role, ['admin', 'dev']);
+        return true;
     }
 
     /**
@@ -25,12 +24,11 @@ class UpdatePatientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|size:26',
-            'name' => 'max:255',
-            'sex' => 'in:male,female,other',
-            'birth_date' => 'date_format:Y-m-d',
-            'cpf' => 'size:11',
-            'image' => [new Image],
+            'program_id' => 'required|string|size:26',
+            'goal_id' => 'required|string|size:26',
+            'inputs' => 'required|array',
+            'inputs.*.name' => 'required|string|max:255',
+            'inputs.*.value' => 'required',
         ];
     }
 }

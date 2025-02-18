@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     use HasFactory, HasUlids;
+
+    protected $fillable = ['program_id', 'goal_id', 'user_id', 'inputs'];
+
+    protected $casts = ['inputs' => 'array'];
 }
