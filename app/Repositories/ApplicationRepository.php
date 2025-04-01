@@ -10,65 +10,65 @@ class ApplicationRepository
 {
   private const TTL = 86400;
 
-  public function list(string $goalId): Collection
+  public function list(string $programId): Collection
   {
     return Cache::remember(
-      $this->key($goalId),
+      $this->key($programId),
       self::TTL,
-      fn() => Application::where('goal_id', $goalId)->get()
+      fn() => Application::where('program_id', $programId)->get()
     );
   }
 
-  public function find(mixed $value, string $goalId, string $field = 'id')
+  public function find(mixed $value, string $programId, string $field = 'id')
   {
-    return $this->list($goalId)
+    return $this->list($programId)
       ->filter(fn(Application $application) => $application->{$field} === $value)
       ->first();
   }
 
-  public function create(array $data, string $goalId)
+  public function create(array $data, string $programId)
   {
     $application = new Application($data);
     $application->save();
 
-    $this->updateCache($application, $goalId);
+    $this->updateCache($application, $programId);
 
     return $application;
   }
 
-  public function update(array $data, string $goalId)
+  public function update(array $data, string $programId)
   {
-    $application = $this->find($data['id'], $goalId);
+    $application = $this->find($data['id'], $programId);
     if($application === null) return false;
 
     collect($data)->each(fn($value, $attr) => $application->{$attr} = $value);
     $application->save();
 
-    $this->updateCache($application, $goalId);
+    $this->updateCache($application, $programId);
 
     return $application;
   }
 
-  public function delete(string $id, string $goalId)
+  public function delete(string $id, string $programId)
   {
-    $application = $this->find($id, $goalId);
+    $application = $this->find($id, $programId);
     if($application === null) return false;
 
     $application->delete();
-    $this->updateCache($application, $goalId, delete: true);
+    $this->updateCache($application, $programId, delete: true);
 
     return true;
   }
 
-  private function updateCache(Application $application, string $goalId, bool $delete = false)
+  private function updateCache(Application $application, string $programId, bool $delete = false)
   {
-    $all = $this->list($goalId)->filter(fn(Application $cached) => $cached->id !== $application->id);
+    $all = $this->list($programId)->filter(fn(Application $cached) => $cached->id !== $application->id);
 
-    Cache::put($this->key($goalId), $delete ? $all : $all->push($application));
+    Cache::put($this->key($programId), $delete ? $all : $all->push($application));
   }
 
-  private function key(string $goalId)
+  private function key(string $programId)
   {
-    return "applications-from-$goalId";
+    return "applications-from-$programId";
   }
 }

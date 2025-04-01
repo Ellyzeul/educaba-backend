@@ -15,7 +15,6 @@ class CreateAction
       'program_id' => $data['program_id'],
       'goal_id' => $data['goal_id'],
       'inputs' => $data['inputs'],
-      'user_id' => $request->user()->id,
     ], $data['goal_id']);
 
     return $application;

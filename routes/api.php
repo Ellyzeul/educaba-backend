@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
 
     Route::patch('/organization', [OrganizationController::class, 'update']);
 
+    Route::get('/patient', [PatientController::class, 'read']);
     Route::post('/patient', [PatientController::class, 'create']);
     Route::patch('/patient', [PatientController::class, 'update']);
     Route::delete('/patient', [PatientController::class, 'delete']);
@@ -33,7 +34,9 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::post('/program', [ProgramController::class, 'create']);
     Route::put('/program', [ProgramController::class, 'update']);
 
+    Route::get('/application', [ApplicationController::class, 'read']);
     Route::post('/application', [ApplicationController::class, 'create']);
+    Route::patch('/application', [ApplicationController::class, 'update']);
 });
 
 $unauthenticatedCallback = function() {

@@ -13,4 +13,16 @@ class Application extends Model
     protected $fillable = ['program_id', 'goal_id', 'user_id', 'inputs'];
 
     protected $casts = ['inputs' => 'array'];
+    
+    protected $appends = ['program_name', 'goal_name'];
+    
+    public function getProgramNameAttribute()
+    {
+        return Program::find($this->program_id)->name ?? null;
+    }
+    
+    public function getGoalNameAttribute()
+    {
+        return Goal::find($this->goal_id)->name ?? null;
+    }
 }

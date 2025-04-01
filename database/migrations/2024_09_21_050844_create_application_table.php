@@ -19,7 +19,6 @@ return new class extends Migration
             $table->json('inputs');
             $table->foreignIdFor(Program::class)->constrained();
             $table->foreignIdFor(Goal::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });
     }
