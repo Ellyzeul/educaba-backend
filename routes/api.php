@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProgramSetStatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthDeveloper;
 use Illuminate\Http\Request;
@@ -33,10 +34,17 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::get('/program', [ProgramController::class, 'read']);
     Route::post('/program', [ProgramController::class, 'create']);
     Route::put('/program', [ProgramController::class, 'update']);
+    Route::delete('/program', [ProgramController::class, 'delete']);
 
     Route::get('/application', [ApplicationController::class, 'read']);
     Route::post('/application', [ApplicationController::class, 'create']);
     Route::patch('/application', [ApplicationController::class, 'update']);
+    Route::delete('/application', [ApplicationController::class, 'delete']);
+
+    Route::get('/program-set-status', [ProgramSetStatusController::class, 'read']);
+    Route::post('/program-set-status', [ProgramSetStatusController::class, 'create']);
+    Route::patch('/program-set-status', [ProgramSetStatusController::class, 'update']);
+    Route::delete('/program-set-status', [ProgramSetStatusController::class, 'delete']);
 });
 
 $unauthenticatedCallback = function() {

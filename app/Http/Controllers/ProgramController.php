@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Program\{CreateAction, ReadAction, UpdateAction};
+use App\Actions\Program\{CreateAction, DeleteAction, ReadAction, UpdateAction};
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{CreateProgramRequest, ReadProgramRequest, UpdateProgramRequest};
+use App\Http\Requests\{CreateProgramRequest, DeleteProgramRequest, ReadProgramRequest, UpdateProgramRequest};
 
 class ProgramController extends Controller
 {
@@ -21,5 +21,10 @@ class ProgramController extends Controller
     public function update(UpdateProgramRequest $request)
     {
         return (new UpdateAction)->handle($request);
+    }
+
+    public function delete(DeleteProgramRequest $request)
+    {
+        return (new DeleteAction)->handle($request);
     }
 }

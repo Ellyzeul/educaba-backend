@@ -9,6 +9,6 @@ class ReadAction
 {
   public function handle(ReadApplicationRequest $request)
   {
-    return (new ApplicationRepository)->list($request->input('program_id'))->values();
+    return (new ApplicationRepository)->list($request->program_id)->values();
   }
 }

@@ -10,6 +10,15 @@ return [
     ],
   ],
   'action' => [
+    'application' => [
+      'update' => [
+        'not_found' => "Application doesn't exists...",
+      ],
+      'delete' => [
+        'ok' => 'Application deleted successfully!',
+        'not_found' => "Application doesn't exists...",
+      ],
+    ],
     'user' => [
       'create' => [
         'duplicate' => 'User already registered...',
@@ -55,6 +64,20 @@ return [
       ],
       'update' => [
         'without_organization' => "Authenticated user doesn't belong to an organization...",
+      ],
+      'delete' => [
+        'ok' => 'Program deleted successfully!',
+        'not_found' => "Program doesn't exists...",
+      ],
+    ],
+    'program_set_status' => [
+      'update' => [
+        'not_found' => "This status doesn't exists...",
+      ],
+      'delete' => [
+        'ok' => 'Status deleted successfully!',
+        'not_found' => "This status doesn't exists...",
+        'in_use' => 'This status is in usage, can not be deleted...',
       ],
     ],
   ],

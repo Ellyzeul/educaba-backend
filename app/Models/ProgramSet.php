@@ -13,7 +13,7 @@ class ProgramSet extends Model
 {
     use HasFactory, HasUlids;
 
-    protected $fillable = ['name', 'program_id', 'organization_id'];
+    protected $fillable = ['name', 'program_id', 'organization_id', 'program_set_status_id'];
 
     protected $appends = ['goals', 'status'];
 

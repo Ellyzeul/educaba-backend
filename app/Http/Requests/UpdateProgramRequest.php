@@ -34,6 +34,7 @@ class UpdateProgramRequest extends FormRequest
             'sets' => 'required|array',
             'sets.*.id' => 'string|size:26',
             'sets.*.name' => 'max:255',
+            'sets.*.program_set_status_id' => 'required|string|size:26',
             'sets.*.goals' => 'required|array',
             'sets.*.goals.*.id' => 'string|max:26',
             'sets.*.goals.*.name' => 'required|string|max:255',
