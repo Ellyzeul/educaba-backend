@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProgramController;
@@ -45,6 +46,11 @@ Route::middleware(['auth:sanctum', 'on-organization'])->group(function () {
     Route::post('/program-set-status', [ProgramSetStatusController::class, 'create']);
     Route::patch('/program-set-status', [ProgramSetStatusController::class, 'update']);
     Route::delete('/program-set-status', [ProgramSetStatusController::class, 'delete']);
+
+    Route::get('/contact', [ContactController::class, 'read']);
+    Route::post('/contact', [ContactController::class, 'create']);
+    Route::patch('/contact', [ContactController::class, 'update']);
+    Route::delete('/contact', [ContactController::class, 'delete']);
 });
 
 $unauthenticatedCallback = function() {

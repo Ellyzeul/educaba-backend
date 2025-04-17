@@ -19,6 +19,15 @@ return [
         'not_found' => "Aplicação não existe...",
       ],
     ],
+    'contact' => [
+      'update' => [
+        'not_found' => "Contato não existe...",
+      ],
+      'delete' => [
+        'ok' => 'Contato deletado com sucesso!',
+        'not_found' => "Contato não existe...",
+      ],
+    ],
     'user' => [
       'create' => [
         'duplicate' => 'Usuário já cadastrado...',
