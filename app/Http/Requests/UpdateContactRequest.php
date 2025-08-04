@@ -23,6 +23,10 @@ class UpdateContactRequest extends FormRequest
     {
         return [
             /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
+            'id' => 'required|size:26',
+            /**
              * @example "John Doe"
              */
             'name' => 'string',

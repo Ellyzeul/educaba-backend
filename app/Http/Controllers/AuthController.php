@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * @response array{token: "1|4QmFM3818wBJ9dhT5G52zEICnMkKCAq4GQf7fJYW6d80ba3k", expires_at: "2024-11-22T03:18:25.000000Z"}
+     */
     public function auth(Request $request)
     {
         if(!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

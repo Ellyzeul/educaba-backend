@@ -25,6 +25,9 @@ class CreateProgramRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
             'patient_id' => 'required|string|size:26',
             'inputs' => 'required|array',
             'inputs.*.name' => 'required|string|max:255',
@@ -32,7 +35,10 @@ class CreateProgramRequest extends FormRequest
             'has_single_set' => 'boolean',
             'sets' => 'required|array',
             'sets.*.name' => 'max:255',
-            'sets.*.program_set_status_id' => 'required|string|size:26',
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
+            'sets.*.program_set_status_id' => 'string|size:26',
             'sets.*.goals' => 'required|array',
             'sets.*.goals.*.name' => 'required|string|max:255',
         ];

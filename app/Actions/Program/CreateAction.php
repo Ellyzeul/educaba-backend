@@ -8,6 +8,7 @@ use App\Repositories\GoalRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\ProgramSetRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class CreateAction
 {
@@ -58,6 +59,7 @@ class CreateAction
     foreach($setData['goals'] as $goalData) {
       $repository->create([
         'name' => $goalData['name'],
+        'program_set_status_id' => $goalData['program_set_status_id'] ?? Str::repeat('0', 26),
         'program_set_id' => $programSetId,
       ], $programSetId);
     }

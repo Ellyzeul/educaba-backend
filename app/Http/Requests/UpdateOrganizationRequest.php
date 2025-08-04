@@ -24,11 +24,20 @@ class UpdateOrganizationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
             'id' => 'required|size:26',
             'name' => 'max:255|nullable',
+            /**
+             * @example "12123123000112"
+             */
             'cnpj' => 'size:14|nullable',
+            /**
+             * @example "11 97070-7070"
+             */
             'phone' => 'max:30|nullable',
-            'contact_email' => 'max:255|nullable',
+            'contact_email' => 'email|nullable',
         ];
     }
 }

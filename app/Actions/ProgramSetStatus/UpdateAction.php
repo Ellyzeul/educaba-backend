@@ -13,6 +13,7 @@ class UpdateAction
     $data = $request->validated();
 
     $programSetStatus = (new ProgramSetStatusRepository)->update([
+      'id' => $data['id'],
       'name' => $data['name'],
     ], $request->user()->organization_id);
 

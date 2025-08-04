@@ -24,7 +24,10 @@ class UpdateProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|string|size:26',
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
+            'id' => 'required|size:26',
             'name' => 'required|string|max:255',
             'patient_id' => 'required|string|size:26',
             'inputs' => 'required|array',

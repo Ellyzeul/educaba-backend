@@ -10,7 +10,6 @@ use App\Repositories\ProgramRepository;
 use App\Repositories\ProgramSetRepository;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class UpdateAction
@@ -35,13 +34,7 @@ class UpdateAction
 
   private function updateProgram(array $data)
   {
-    (new ProgramRepository)->update([
-      'id' => $data['id'],
-      'name' => $data['name'],
-      'inputs' => $data['inputs'],
-      'has_single_set' => $data['has_single_set'] ?? false,
-      'patient_id' => $data['patient_id'],
-    ], $data['patient_id']);
+    (new ProgramRepository)->update($data, $data['patient_id']);
   }
 
   private function updateProgramSets(array $data, Program $program, string $organizationId)

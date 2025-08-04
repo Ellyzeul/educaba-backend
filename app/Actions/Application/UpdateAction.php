@@ -10,11 +10,7 @@ class UpdateAction
 {
   public function handle(UpdateApplicationRequest $request)
   {
-    $data = $request->validated();
-
-    $application = (new ApplicationRepository)->update([
-      'inputs' => $data['inputs'],
-    ], $data['program_id']);
+    $application = (new ApplicationRepository)->update($request->validated(), $request->program_id);
 
     if(!$application) {
       return response([

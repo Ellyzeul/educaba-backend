@@ -24,10 +24,19 @@ class UpdateApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|string|size:26',
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
+            'id' => 'required|size:26',
             'inputs' => 'array',
             'inputs.*.name' => 'string|max:255',
+            /**
+             * @example "any"
+             */
             'inputs.*.value' => 'present',
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
             'program_id' => 'required|string|size:26',
         ];
     }

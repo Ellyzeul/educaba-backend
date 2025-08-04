@@ -25,6 +25,9 @@ class UpdatePatientRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /**
+             * @example "01jd8y1hf05zjg3jzbktnxrtw4"
+             */
             'id' => 'required|size:26',
             'name' => 'max:255',
             'sex' => 'in:male,female,other',
