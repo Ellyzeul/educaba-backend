@@ -62,7 +62,11 @@ class ApplicationRepository
 
   private function updateCache(Application $application, string $programId, bool $delete = false)
   {
-    $all = $this->list($programId)->filter(fn(Application $cached) => $cached->id !== $application->id);
+    $all = collect($this
+      ->list($programId)
+      ->filter(fn(Application $cached) => $cached->id !== $application->id)
+      ->values()
+    );
 
     Cache::put($this->key($programId), $delete ? $all : $all->push($application));
   }

@@ -62,7 +62,11 @@ class ProgramSetRepository
 
   private function updateCache(ProgramSet $programSet, string $programId, bool $delete = false)
   {
-    $all = $this->list($programId)->filter(fn(ProgramSet $cached) => $cached->id !== $programSet->id);
+    $all = collect($this
+      ->list($programId)
+      ->filter(fn(ProgramSet $cached) => $cached->id !== $programSet->id)
+      ->values()
+    );
 
     Cache::put($this->key($programId), $delete ? $all : $all->push($programSet));
   }

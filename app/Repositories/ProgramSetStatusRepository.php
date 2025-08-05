@@ -64,7 +64,11 @@ class ProgramSetStatusRepository
 
   private function updateCache(ProgramSetStatus $programSetStatus, string $organizationId, bool $delete = false)
   {
-    $all = $this->list($organizationId)->filter(fn(ProgramSetStatus $cached) => $cached->id !== $programSetStatus->id);
+    $all = collect($this
+      ->list($organizationId)
+      ->filter(fn(ProgramSetStatus $cached) => $cached->id !== $programSetStatus->id)
+      ->values()
+    );
 
     Cache::put($this->key($organizationId), $delete ? $all : $all->push($programSetStatus));
   }

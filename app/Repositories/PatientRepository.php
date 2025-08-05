@@ -62,7 +62,11 @@ class PatientRepository
 
   private function updateCache(Patient $patient, string $organizationId, bool $delete = false)
   {
-    $all = $this->list($organizationId)->filter(fn(Patient $cached) => $cached->id !== $patient->id);
+    $all = collect($this
+      ->list($organizationId)
+      ->filter(fn(Patient $cached) => $cached->id !== $patient->id)
+      ->values()
+    );
 
     Cache::put($this->key($organizationId), $delete ? $all : $all->push($patient));
   }

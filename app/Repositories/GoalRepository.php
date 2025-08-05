@@ -62,7 +62,11 @@ class GoalRepository
 
   private function updateCache(Goal $goal, string $programSetId, bool $delete = false)
   {
-    $all = $this->list($programSetId)->filter(fn(Goal $cached) => $cached->id !== $goal->id);
+    $all = collect($this
+      ->list($programSetId)
+      ->filter(fn(Goal $cached) => $cached->id !== $goal->id)
+      ->values()
+    );
 
     Cache::put($this->key($programSetId), $delete ? $all : $all->push($goal));
   }

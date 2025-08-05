@@ -84,7 +84,11 @@ class UserRepository
   {
     if($this->key($organizationId) === null) return;
 
-    $users = $this->list($organizationId)->filter(fn(User $item) => $item->email !== $user->email);
+    $users = collect($this
+      ->list($organizationId)
+      ->filter(fn(User $item) => $item->email !== $user->email)
+      ->values()
+    );
     Cache::put($this->key($organizationId), $delete ? $users : $users->push($user));
   }
 

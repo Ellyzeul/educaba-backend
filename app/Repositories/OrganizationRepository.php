@@ -52,7 +52,11 @@ class OrganizationRepository
 
   private function updateCache(Organization $organization, bool $delete = false)
   {
-    $all = $this->list()->filter(fn(Organization $cached) => $cached->id !== $organization->id);
+    $all = collect($this
+      ->list()
+      ->filter(fn(Organization $cached) => $cached->id !== $organization->id)
+      ->values()
+    );
 
     Cache::put(self::KEY, $delete ? $all : $all->push($organization));
   }

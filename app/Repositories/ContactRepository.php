@@ -62,7 +62,11 @@ class ContactRepository
 
   private function updateCache(Contact $contact, string $patientId, bool $delete = false)
   {
-    $all = $this->list($patientId)->filter(fn(Contact $cached) => $cached->id !== $contact->id);
+    $all = collect($this
+      ->list($patientId)
+      ->filter(fn(Contact $cached) => $cached->id !== $contact->id)
+      ->values()
+    );
 
     Cache::put($this->key($patientId), $delete ? $all : $all->push($contact));
   }
